@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=TuxNotes
+GenericName=Sticky Notes
+Comment=Post-it style notes that live on your desktop
+Exec=tuxnotes
+Icon=tuxnotes
+Categories=Utility;TextEditor;
+Keywords=tuxnotes;sticky;notes;postit;
+StartupNotify=true
+StartupWMClass=org.jhc.TuxNotes
+SingleMainWindow=true
+X-KDE-StartupNotify=true
