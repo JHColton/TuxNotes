@@ -88,6 +88,17 @@ On X11 the same features use plain window-manager calls instead.
 | Translucent | `Ctrl+Alt+T` |
 | Delete note | `Ctrl+W` or the close box |
 
+## AI-assisted development
+
+TuxNotes was built with substantial AI assistance: the implementation was
+written by an AI coding assistant working iteratively under human direction.
+Architecture and product decisions, Wayland/KWin research, testing, and every
+merge were done by the author — who takes full responsibility for the code
+that ships.
+
+The source is deliberately small (~2,300 lines) and meant to be readable; if
+you're curious what AI-built software looks like, this is that.
+
 ## License
 
 [GPL-3.0](LICENSE)
