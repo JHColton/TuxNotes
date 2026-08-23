@@ -23,47 +23,8 @@ QString NoteStore::filePath()
     return dir + QLatin1String("/notes.json");
 }
 
-// Legacy data directories from earlier identities; migrate once.
-void NoteStore::migrateLegacyDataDir()
-{
-    const QString newPath =
-        QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    if (QFileInfo::exists(newPath + QLatin1String("/notes.json")))
-        return;
-
-    // Legacy locations, oldest first: previous organization names hosted the
-    // same set of per-identity directories.
-    const QStringList legacyParents = {
-        QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
-            + QStringLiteral("/colton"),
-        QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
-            + QStringLiteral("/Stickies"),
-    };
-    const QStringList legacyNames = {
-        QStringLiteral("org.jhc.TuxNotes"),
-        QStringLiteral("org.colton.TuxNotes"),
-        QStringLiteral("org.colton.Stickies"),
-        QStringLiteral("Stickies"),
-    };
-
-    for (const QString &legacyParent : legacyParents) {
-        for (const QString &legacyName : legacyNames) {
-            const QString legacy = legacyParent + QLatin1Char('/') + legacyName;
-            if (QFileInfo::exists(legacy + QLatin1String("/notes.json"))
-                && !QDir(newPath).exists()) {
-                // Ensure the PARENT of the new dir exists, then rename the
-                // legacy directory into place (target must not exist).
-                QDir().mkpath(QFileInfo(newPath).absolutePath());
-                if (QDir(legacyParent).rename(legacyName, newPath))
-                    return;
-            }
-        }
-    }
-}
-
 void NoteStore::load()
 {
-    migrateLegacyDataDir();
     m_notes.clear();
 
     QFile file(filePath());

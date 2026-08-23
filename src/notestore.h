@@ -27,7 +27,6 @@ public:
 
 private:
     static QString filePath();
-    static void migrateLegacyDataDir();
 
     QList<Note> m_notes;
     QPoint m_cascade{-1, -1};

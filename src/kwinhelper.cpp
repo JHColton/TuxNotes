@@ -145,8 +145,6 @@ void KWinHelper::ensureWatcher()
     // target our service name and double-report. Also unload watchers from
     // earlier app identities.
     iface->asyncCall(QLatin1String("unloadScript"), kWatcherPlugin);
-    iface->asyncCall(QLatin1String("unloadScript"), QStringLiteral("org.colton.TuxNotes.watch"));
-    iface->asyncCall(QLatin1String("unloadScript"), QStringLiteral("org.colton.Stickies.watch"));
 
     const QString cacheDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
     QDir().mkpath(cacheDir);
