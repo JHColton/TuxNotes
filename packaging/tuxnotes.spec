@@ -3,7 +3,7 @@ Version:        1.0.0
 Release:        1%{?dist}
 Summary:        macOS-style sticky notes for the KDE Plasma desktop
 
-License:        MIT
+License:        GPL-3.0-only
 URL:            https://github.com/JHColton/tuxnotes
 Source0:        %{name}-%{version}.tar.gz
 
