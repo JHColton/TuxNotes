@@ -23,34 +23,30 @@ them.
 - **Autosave** — continuous, crash-safe; positions tracked live while you drag
 - **Single instance** — launching again opens a new note
 
-## Install
+## Download
 
-### Fedora (RPM)
+Pre-built binaries are available on the
+[Releases page](https://github.com/JHColton/TuxNotes/releases):
 
-Build and install locally:
+- **AppImage** — portable, runs on any modern distro (glibc 2.39+:
+  Fedora 40+, Ubuntu 24.04+, Debian 13+). No installation required:
 
-```bash
-sudo dnf install rpm-build          # once
-./packaging/build-rpm.sh
-sudo dnf install ~/rpmbuild/RPMS/x86_64/tuxnotes-*.rpm
-```
+  ```bash
+  chmod +x tuxnotes-*-x86_64.AppImage
+  ./tuxnotes-*-x86_64.AppImage
+  ```
 
-### AppImage (portable, any modern distro)
+- **RPM** (Fedora) — installs the app, launcher entry and icon:
 
-Download `tuxnotes-<version>-x86_64.AppImage`, make it executable, run it:
+  ```bash
+  sudo dnf install ./tuxnotes-*.rpm
+  ```
 
-```bash
-chmod +x tuxnotes-*-x86_64.AppImage
-./tuxnotes-*-x86_64.AppImage
-```
+> **Tip for AppImage users:** the taskbar icon resolves best when a desktop
+> entry exists — install the RPM, or use
+> [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher).
 
-Built against glibc 2.39 — works on Fedora 40+, Ubuntu 24.04+, Debian 13+.
-Runs natively on Wayland (falls back to X11 elsewhere).
-
-> **Note for AppImage users:** the taskbar icon resolves best when a desktop
-> entry exists (install the RPM, or use AppImageLauncher).
-
-## Building from source
+## Build from source
 
 Requirements: Qt 6.6+ (Gui, Widgets, DBus), CMake 3.21+, a C++20 compiler.
 

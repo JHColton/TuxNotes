@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     QApplication app(argc, argv);
     // applicationName doubles as the Wayland app_id on older Qt releases
     // (6.8.x ignores desktopFileName), so keep it equal to the app id.
-    QCoreApplication::setOrganizationName(QStringLiteral("colton"));
+    QCoreApplication::setOrganizationName(QStringLiteral("jhc"));
     QCoreApplication::setApplicationName(QStringLiteral("org.jhc.TuxNotes"));
     QGuiApplication::setDesktopFileName(QStringLiteral("org.jhc.TuxNotes"));
     QGuiApplication::setWindowIcon(QIcon(QStringLiteral(":/icon.png")));

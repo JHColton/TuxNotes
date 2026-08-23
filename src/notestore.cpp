@@ -30,17 +30,32 @@ void NoteStore::migrateLegacyDataDir()
         QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     if (QFileInfo::exists(newPath + QLatin1String("/notes.json")))
         return;
-    QDir parent(newPath);
-    if (parent.cdUp()) {
-        for (const QString &legacyName : {QStringLiteral("Stickies"),
-                                          QStringLiteral("org.colton.Stickies"),
-                                          QStringLiteral("org.colton.TuxNotes")}) {
-            const QString legacy = parent.filePath(legacyName);
+
+    // Legacy locations, oldest first: previous organization names hosted the
+    // same set of per-identity directories.
+    const QStringList legacyParents = {
+        QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
+            + QStringLiteral("/colton"),
+        QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
+            + QStringLiteral("/Stickies"),
+    };
+    const QStringList legacyNames = {
+        QStringLiteral("org.jhc.TuxNotes"),
+        QStringLiteral("org.colton.TuxNotes"),
+        QStringLiteral("org.colton.Stickies"),
+        QStringLiteral("Stickies"),
+    };
+
+    for (const QString &legacyParent : legacyParents) {
+        for (const QString &legacyName : legacyNames) {
+            const QString legacy = legacyParent + QLatin1Char('/') + legacyName;
             if (QFileInfo::exists(legacy + QLatin1String("/notes.json"))
                 && !QDir(newPath).exists()) {
-                QDir(parent.absolutePath()).rename(legacyName,
-                                                   QFileInfo(newPath).fileName());
-                break;
+                // Ensure the PARENT of the new dir exists, then rename the
+                // legacy directory into place (target must not exist).
+                QDir().mkpath(QFileInfo(newPath).absolutePath());
+                if (QDir(legacyParent).rename(legacyName, newPath))
+                    return;
             }
         }
     }
