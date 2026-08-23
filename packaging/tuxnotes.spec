@@ -39,5 +39,5 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/org.jhc.TuxNotes.desk
 %{_datadir}/icons/hicolor/256x256/apps/tuxnotes.png
 
 %changelog
-* Sat Aug 22 2026 JHColton <JHColton@users.noreply.github.com> - 1.0.0-1
+* Sat Aug 22 2026 JHColton - 1.0.0-1
 - Initial release as TuxNotes 1.0
