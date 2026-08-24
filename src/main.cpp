@@ -30,6 +30,13 @@ int main(int argc, char **argv)
     QGuiApplication::setDesktopFileName(QStringLiteral("org.jhc.TuxNotes"));
     QGuiApplication::setWindowIcon(QIcon(QStringLiteral(":/icon.png")));
 
+    bool requestNew = false;
+    for (int i = 1; i < argc; ++i) {
+        if (QString::fromLocal8Bit(argv[i]) == QLatin1String("--new-note")
+            || QString::fromLocal8Bit(argv[i]) == QLatin1String("-n"))
+            requestNew = true;
+    }
+
     if (socketpair(AF_UNIX, SOCK_STREAM, 0, g_signalFds) == 0) {
         struct sigaction sa;
         sa.sa_handler = handleSignal;
@@ -54,7 +61,7 @@ int main(int argc, char **argv)
     }
 
     TuxNotesApplication app2;
-    app2.start();
+    app2.start(requestNew);
 
     return QCoreApplication::exec();
 }

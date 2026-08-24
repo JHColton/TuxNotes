@@ -17,7 +17,7 @@ class TuxNotesApplication : public QObject
 public:
     explicit TuxNotesApplication(QObject *parent = nullptr);
 
-    void start();
+    void start(bool createNew = false);
 
 public slots:
     void NewNote();

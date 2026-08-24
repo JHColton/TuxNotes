@@ -156,7 +156,7 @@ void TuxNotesApplication::applyTick()
     });
 }
 
-void TuxNotesApplication::start()
+void TuxNotesApplication::start(bool createNew)
 {
     m_store.load();
 
@@ -180,6 +180,10 @@ void TuxNotesApplication::start()
     }
 
     restoreNotes();
+
+    // Desktop "New Note" action / --new-note on a cold start.
+    if (createNew)
+        NewNote();
 }
 
 void TuxNotesApplication::NewNote()

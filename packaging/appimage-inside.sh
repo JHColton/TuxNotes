@@ -30,6 +30,12 @@ Comment=Post-it style notes that live on your desktop
 Exec=tuxnotes
 Icon=tuxnotes
 Categories=Utility;
+Actions=new;
+
+[Desktop Action new]
+Name=New Note
+Exec=tuxnotes --new-note
+Icon=document-new
 EOF
 
 # ---- Bundle Qt libraries + plugins manually --------------------------------

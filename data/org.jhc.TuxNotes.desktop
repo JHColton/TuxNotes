@@ -11,3 +11,9 @@ StartupNotify=true
 StartupWMClass=org.jhc.TuxNotes
 SingleMainWindow=true
 X-KDE-StartupNotify=true
+Actions=new;
+
+[Desktop Action new]
+Name=New Note
+Exec=tuxnotes --new-note
+Icon=document-new
